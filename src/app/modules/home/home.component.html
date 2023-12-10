@@ -1,1 +1,9 @@
-<app-food-vote-list />
+<home-add-food
+  class="mx-auto flex w-auto flex-row py-2 sm:max-w-sm md:max-w-md"
+  (addFoodEvent)="addFood($event)"
+/>
+<home-food-vote-list
+  class="mx-auto block w-auto sm:max-w-sm md:max-w-md"
+  [foodVoteList]="foodVoteList"
+  (clickVoteEvent)="clickVote($event)"
+/>
