@@ -1,0 +1,43 @@
+<div class="flex min-w-0 flex-grow basis-1/2 gap-x-4">
+  <img
+    class="h-12 w-12 flex-none rounded-full bg-gray-50"
+    src="{{ foodVote.submitterImageUrl }}"
+    alt=""
+  />
+  <div class="min-w-0 flex-auto">
+    <p class="text-sm font-semibold leading-6 text-gray-900">
+      {{ foodVote.food }}
+    </p>
+    <p class="mt-1 truncate text-xs leading-5 text-gray-500">
+      {{ foodVote.submitterName }}
+    </p>
+  </div>
+</div>
+<div class="flex flex-grow basis-1/2 flex-row items-center">
+  <div class="flex -space-x-2">
+    @for (liker of foodVote.likerImageUrls; track $index) {
+      @if ($index < 5) {
+        <img
+          class="inline-block h-8 w-8 rounded-full ring-2 ring-white"
+          src="{{ liker }}"
+          alt=""
+        />
+      }
+    }
+
+    @if (foodVote.likerImageUrls.length > 5) {
+      <a
+        class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-700 text-xs font-medium text-white ring-2 ring-white hover:bg-gray-600"
+        href=""
+        >+{{ foodVote.likerImageUrls.length - 5 }}</a
+      >
+    }
+  </div>
+  <input
+    class="ml-auto"
+    type="radio"
+    name="food"
+    title="food"
+    (change)="updateLiker($event)"
+  />
+</div>

@@ -1,0 +1,11 @@
+<div class="container mx-auto">
+  <ul role="list" class="divide-y divide-gray-100">
+    @for (foodVote of foodVoteList; track $index) {
+      <li
+        food-vote
+        [foodVote]="foodVote"
+        class="flex justify-between gap-x-6 py-5"
+      ></li>
+    }
+  </ul>
+</div>
