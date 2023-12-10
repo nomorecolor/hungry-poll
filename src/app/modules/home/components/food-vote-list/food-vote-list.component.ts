@@ -10,6 +10,7 @@ import { FoodVoteComponent } from '../food-vote/food-vote.component';
 })
 export class FoodVoteListComponent {
   foodVoteList: FoodVote[] = [{
+    id: 1,
     food: 'Sinigang',
     submitterName: 'Fia Amarah Elemia',
     submitterImageUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -21,6 +22,7 @@ export class FoodVoteListComponent {
       'https://images.unsplash.com/photo-1501031170107-cfd33f0cbdcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80']
   },
   {
+    id: 2,
     food: 'Adobo',
     submitterName: 'Freyja Amber Elemia',
     submitterImageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -28,10 +30,30 @@ export class FoodVoteListComponent {
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80']
   },
   {
+    id: 3,
     food: 'Pork Steak',
     submitterName: 'Alain Elemia',
     submitterImageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     likerImageUrls: []
   }
   ];
+
+  previousFoodVoteId = 0;
+  imageUrl = 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
+
+  clickVote = (id: number) => {
+    let filteredFoodVote = this.foodVoteList.filter(foodVote => foodVote.id === id);
+
+    if (filteredFoodVote?.length) {
+      filteredFoodVote[0].likerImageUrls.push(this.imageUrl);
+    }
+
+    let filteredPreviousFoodVote = this.foodVoteList.filter(foodVote => foodVote.id === this.previousFoodVoteId);
+
+    if(filteredPreviousFoodVote?.length) {
+      filteredPreviousFoodVote[0].likerImageUrls.pop();
+    }
+
+    this.previousFoodVoteId = id;
+  }
 }

@@ -9,12 +9,9 @@ import { FoodVote } from '../../models/food-vote.type';
 })
 export class FoodVoteComponent {
   @Input() foodVote!: FoodVote;
-  @Output() addItemEvent = new EventEmitter<string>();
+  @Output() clickVoteEvent = new EventEmitter<number>();
 
-  likerImageUrl = 'https://images.unsplash.com/photo-1507101105822-7472b28e22ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
-
-  updateLiker = (e: Event) => {
-    let isChecked = (e.target as HTMLInputElement).checked;
-    this.foodVote.likerImageUrls?.push(this.likerImageUrl);
+  clickVote = () => {
+    this.clickVoteEvent.emit(this.foodVote.id);
   }
 }
