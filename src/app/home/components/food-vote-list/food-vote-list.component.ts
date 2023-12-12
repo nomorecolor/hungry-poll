@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { FoodVote } from '../../models/food-vote.type';
 import { FoodVoteComponent } from '../food-vote/food-vote.component';
 
@@ -6,7 +7,7 @@ import { FoodVoteComponent } from '../food-vote/food-vote.component';
   selector: 'home-food-vote-list',
   standalone: true,
   imports: [FoodVoteComponent],
-  templateUrl: './food-vote-list.component.html'
+  templateUrl: './food-vote-list.component.html',
 })
 export class FoodVoteListComponent {
   @Input() foodVoteList: FoodVote[] = [];

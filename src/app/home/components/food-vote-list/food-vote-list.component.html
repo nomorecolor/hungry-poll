@@ -1,9 +1,9 @@
 <ul role="list" class="divide-y divide-gray-100">
   @for (foodVote of foodVoteList; track $index) {
     <li
-      home-food-vote
-      [foodVote]="foodVote"
       (clickVoteEvent)="clickVote($event)"
+      [foodVote]="foodVote"
+      home-food-vote
       class="flex justify-between gap-x-6 rounded-xl px-2 py-5 hover:bg-slate-100"
     ></li>
   }

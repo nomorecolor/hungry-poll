@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+
 import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'modal',
   standalone: true,
   imports: [],
-  templateUrl: './modal.component.html'
+  templateUrl: './modal.component.html',
 })
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id?: string;
@@ -14,7 +15,10 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   private element: any;
 
-  constructor(private modalService: ModalService, private el: ElementRef) {
+  constructor(
+    private modalService: ModalService,
+    private el: ElementRef,
+  ) {
     this.element = el.nativeElement;
   }
 
