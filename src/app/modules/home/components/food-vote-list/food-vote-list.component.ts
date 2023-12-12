@@ -1,4 +1,3 @@
-import { FoodService } from '../../services/food.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FoodVote } from '../../models/food-vote.type';
 import { FoodVoteComponent } from '../food-vote/food-vote.component';
@@ -13,7 +12,7 @@ export class FoodVoteListComponent {
   @Input() foodVoteList: FoodVote[] = [];
   @Output() clickVoteEvent = new EventEmitter<number>();
 
-  clickVote = (id: number) => {
+  clickVote(id: number) {
     this.clickVoteEvent.emit(id);
   }
 }

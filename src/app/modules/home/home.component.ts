@@ -3,30 +3,32 @@ import { FoodVoteListComponent } from './components/food-vote-list/food-vote-lis
 import { AddFoodComponent } from './components/add-food/add-food.component';
 import { FoodVote } from './models/food-vote.type';
 import { FoodService } from './services/food.service';
+import { ModalComponent } from '../../shared/components/modal/modal.component';
+import { ModalService } from '../../shared/services/modal.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FoodVoteListComponent, AddFoodComponent],
+  imports: [FoodVoteListComponent, AddFoodComponent, ModalComponent],
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
   foodVoteList: FoodVote[] = [];
-  previousFoodVoteId = 0;
+  previousFoodVoteId: number = 0;
 
-  constructor(private foodService: FoodService) {
+  constructor(private foodService: FoodService, private modalService: ModalService) {
     this.loadFoodVoteList();
   }
 
-  loadFoodVoteList = () => {
+  loadFoodVoteList() {
     this.foodVoteList = this.foodService.getFoodVoteList();
   }
 
-  clickVote = (id: number) => {
+  clickVote(id: number) {
     this.previousFoodVoteId = this.foodService.updateFoodVote(id, this.previousFoodVoteId);
   }
 
-  addFood = (foodName: string) => {
+  addFood(foodName: string) {
     const foodVote: FoodVote = {
       id: -1,
       food: foodName,

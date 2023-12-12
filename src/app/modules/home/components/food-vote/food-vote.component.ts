@@ -11,7 +11,7 @@ export class FoodVoteComponent {
   @Input() foodVote!: FoodVote;
   @Output() clickVoteEvent = new EventEmitter<number>();
 
-  clickVote = () => {
+  clickVote() {
     this.clickVoteEvent.emit(this.foodVote.id);
   }
 }
