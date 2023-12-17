@@ -1,0 +1,39 @@
+<nav class="border-b border-gray-200 bg-white shadow-sm">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-end">
+      <div
+        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+      >
+        <div class="relative ml-3">
+          <div>
+            <button
+              (click)="toggleMenu()"
+              type="button"
+              class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white"
+            >
+              <span class="absolute -inset-1.5"></span>
+              <span class="sr-only">Open user menu</span>
+              <img
+                class="h-8 w-8 rounded-full"
+                src="{{ (user$ | async)!.imageUrl }}"
+                alt=""
+              />
+            </button>
+          </div>
+          <div
+            [ngClass]="{
+              'animate-dropdown-enter': isMenuOpened,
+              'animate-dropdown-leave opacity-0': !isMenuOpened
+            }"
+            class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            tabindex="-1"
+          >
+            <p class="block px-4 py-2 text-sm text-gray-700">
+              {{ (user$ | async)!.name }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
