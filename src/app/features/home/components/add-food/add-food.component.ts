@@ -27,6 +27,7 @@ export class AddFoodComponent {
 
   addFood() {
     this.addFoodEvent.emit(this.foodForm.controls.foodName.value!);
+
     this.modalService.close();
     this.foodForm.reset();
   }
