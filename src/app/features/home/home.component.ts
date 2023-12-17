@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ModalComponent } from '../shared/components/modal/modal.component';
+import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { AddFoodComponent } from './components/add-food/add-food.component';
 import { FoodVoteListComponent } from './components/food-vote-list/food-vote-list.component';
 import { FoodVote } from './models/food-vote.type';

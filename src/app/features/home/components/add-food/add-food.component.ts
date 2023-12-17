@@ -7,8 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { ModalComponent } from '../../../shared/components/modal/modal.component';
-import { ModalService } from '../../../shared/services/modal.service';
+import { ModalComponent } from '../../../../shared/components/modal/modal.component';
+import { ModalService } from '../../../../shared/services/modal.service';
 
 @Component({
   selector: 'home-add-food',
@@ -28,5 +28,6 @@ export class AddFoodComponent {
   addFood() {
     this.addFoodEvent.emit(this.foodForm.controls.foodName.value!);
     this.modalService.close();
+    this.foodForm.reset();
   }
 }

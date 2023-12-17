@@ -10,7 +10,7 @@ import { FoodVoteComponent } from '../food-vote/food-vote.component';
   templateUrl: './food-vote-list.component.html',
 })
 export class FoodVoteListComponent {
-  @Input() foodVoteList: FoodVote[] = [];
+  @Input() foodVoteList: ReadonlyArray<FoodVote> = [];
   @Output() clickVoteEvent = new EventEmitter<number>();
 
   clickVote(id: number) {
