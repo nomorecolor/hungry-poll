@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { selectUser } from '../user/user.selectors';
+import { selectUser } from '../../user/user.selectors';
 
 @Component({
   selector: 'core-navbar',
