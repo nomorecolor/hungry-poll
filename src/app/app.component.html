@@ -1,5 +1,7 @@
 <div>
-  <core-navbar></core-navbar>
+  @if (isAuthenticated) {
+    <core-navbar></core-navbar>
+  }
   <main>
     <router-outlet></router-outlet>
   </main>

@@ -26,5 +26,8 @@ export class AppComponent {
       }
     });
   }
+
+  get isAuthenticated() {
+    return this.authService.hasValidAccessToken();
   }
 }
