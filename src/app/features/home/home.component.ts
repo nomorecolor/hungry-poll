@@ -1,6 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
+import { AuthService } from '../../core/authentication/auth.service';
 import { selectUser } from '../../core/user/user.selectors';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { AddFoodComponent } from './components/add-food/add-food.component';
@@ -11,7 +14,12 @@ import { FoodService } from './services/food.service';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FoodVoteListComponent, AddFoodComponent, ModalComponent],
+  imports: [
+    FoodVoteListComponent,
+    AddFoodComponent,
+    ModalComponent,
+    CommonModule,
+  ],
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
@@ -23,6 +31,8 @@ export class HomeComponent {
   constructor(
     private foodService: FoodService,
     private store: Store,
+    private router: Router,
+    protected authService: AuthService,
   ) {
     this.loadFoodVoteList();
   }
@@ -32,10 +42,13 @@ export class HomeComponent {
   }
 
   clickVote(id: number) {
-    this.previousFoodVoteId = this.foodService.updateFoodVote(
-      id,
-      this.previousFoodVoteId,
-    );
+    this.user$.subscribe((user) => {
+      this.previousFoodVoteId = this.foodService.updateFoodVote(
+        id,
+        this.previousFoodVoteId,
+        user.imageUrl,
+      );
+    });
   }
 
   addFood(foodName: string) {
@@ -52,5 +65,11 @@ export class HomeComponent {
 
       this.loadFoodVoteList();
     });
+  }
+
+  logout() {
+    this.authService.logout();
+
+    this.router.navigate(['/']);
   }
 }

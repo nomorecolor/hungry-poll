@@ -43,22 +43,17 @@ export class FoodService {
     },
   ];
 
-  imageUrl: string =
-    'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80';
-
-  constructor() {}
-
   getFoodVoteList = (): FoodVote[] => {
     return this.foodVoteList;
   };
 
-  updateFoodVote = (id: number, prevId: number): number => {
+  updateFoodVote = (id: number, prevId: number, imageUrl: string): number => {
     const filteredFoodVote = this.foodVoteList.filter(
       (foodVote) => foodVote.id === id,
     );
 
     if (filteredFoodVote?.length) {
-      filteredFoodVote[0].likerImageUrls.push(this.imageUrl);
+      filteredFoodVote[0].likerImageUrls.push(imageUrl);
     }
 
     const filteredPreviousFoodVote = this.foodVoteList.filter(
