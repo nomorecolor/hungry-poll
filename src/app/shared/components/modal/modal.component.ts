@@ -19,7 +19,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     private modalService: ModalService,
     private el: ElementRef,
   ) {
-    this.element = el.nativeElement;
+    this.element = this.el.nativeElement;
   }
 
   ngOnInit() {
