@@ -1,7 +1,8 @@
+import { User } from '../../../core/user/user.type';
+
 export interface FoodVote {
   id: number;
-  food: string;
-  submitterName: string;
-  submitterImageUrl: string;
-  likerImageUrls: string[];
+  foodName: string;
+  createdByUser: User;
+  voters: User[];
 }

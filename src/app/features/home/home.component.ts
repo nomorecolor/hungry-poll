@@ -38,7 +38,9 @@ export class HomeComponent {
   }
 
   loadFoodVoteList() {
-    this.foodVoteList = this.foodService.getFoodVoteList();
+    this.foodService
+      .getFoodVoteList()
+      .subscribe((foodVoteList) => (this.foodVoteList = foodVoteList));
   }
 
   clickVote(id: number) {
@@ -46,7 +48,11 @@ export class HomeComponent {
       this.previousFoodVoteId = this.foodService.updateFoodVote(
         id,
         this.previousFoodVoteId,
-        user.imageUrl,
+        {
+          id: user.id,
+          name: user.name,
+          imageUrl: user.imageUrl,
+        },
       );
     });
   }
@@ -55,10 +61,13 @@ export class HomeComponent {
     this.user$.subscribe((user) => {
       const foodVote: FoodVote = {
         id: -1,
-        food: foodName,
-        submitterName: user.name,
-        submitterImageUrl: user.imageUrl,
-        likerImageUrls: [],
+        foodName: foodName,
+        createdByUser: {
+          id: user.id,
+          name: user.name,
+          imageUrl: user.imageUrl,
+        },
+        voters: [],
       };
 
       this.foodService.addFood(foodVote);
