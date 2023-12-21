@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { User } from '../../../core/user/user.type';
 import { FoodVote } from '../models/food-vote.type';
@@ -93,8 +95,10 @@ export class FoodService {
     },
   ];
 
-  getFoodVoteList = (): FoodVote[] => {
-    return this.foodVoteList;
+  constructor(private http: HttpClient) {}
+
+  getFoodVoteList = (): Observable<FoodVote[]> => {
+    return this.http.get<FoodVote[]>('https://localhost:7258/api/Auth');
   };
 
   updateFoodVote = (id: number, prevId: number, voter: User): number => {
