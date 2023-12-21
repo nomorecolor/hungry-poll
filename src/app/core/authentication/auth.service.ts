@@ -14,6 +14,7 @@ export class AuthService {
     redirectUri: window.location.origin,
     clientId: environment.google.clientId,
     scope: 'openid profile email',
+    useSilentRefresh: true,
   };
 
   constructor(
@@ -33,13 +34,15 @@ export class AuthService {
   }
 
   initialize() {
+    this.oAuthService.setupAutomaticSilentRefresh();
+
     return this.oAuthService
       .loadDiscoveryDocumentAndTryLogin()
       .then(() => this.oAuthService.hasValidAccessToken());
   }
 
   login() {
-    this.oAuthService.initLoginFlow();
+    this.oAuthService.initCodeFlow();
   }
 
   logout() {
