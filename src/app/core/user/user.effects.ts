@@ -23,6 +23,7 @@ export class UserEffects {
             const { name, picture } = (userProfile as UserInfo).info;
 
             const user: User = {
+              id: '8b61ca89-2b53-4cfd-a0ae-7c953d78835d',
               name: name,
               imageUrl: picture,
             };
