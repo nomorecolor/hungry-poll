@@ -38,9 +38,14 @@ export class HomeComponent {
   }
 
   loadFoodVoteList() {
-    this.foodService
-      .getFoodVoteList()
-      .subscribe((foodVoteList) => (this.foodVoteList = foodVoteList));
+    this.foodService.getFoodVoteList().subscribe((foodVoteList) => {
+      console.log(foodVoteList[0].createdByUser);
+      console.log(foodVoteList[0].createdByUser.firstName);
+      console.log(foodVoteList[0].createdByUser.lastName);
+      console.log(foodVoteList[0].createdByUser.displayName);
+
+      this.foodVoteList = foodVoteList;
+    });
   }
 
   clickVote(id: number) {
@@ -50,7 +55,10 @@ export class HomeComponent {
         this.previousFoodVoteId,
         {
           id: user.id,
-          name: user.name,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          externalId: user.externalId,
           imageUrl: user.imageUrl,
         },
       );
@@ -64,7 +72,10 @@ export class HomeComponent {
         foodName: foodName,
         createdByUser: {
           id: user.id,
-          name: user.name,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          externalId: user.externalId,
           imageUrl: user.imageUrl,
         },
         voters: [],

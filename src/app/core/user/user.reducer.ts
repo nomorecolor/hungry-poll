@@ -3,8 +3,15 @@ import { createReducer, on } from '@ngrx/store';
 import { UserActions } from './user.actions';
 import { User } from './user.type';
 
-// TODO: Get user details from API
-export const initialState: User = { id: '', name: '', imageUrl: '' };
+export const initialState: User = {
+  id: '',
+  firstName: '',
+  lastName: '',
+  displayName: '',
+  email: '',
+  externalId: '',
+  imageUrl: '',
+};
 
 export const userReducer = createReducer(
   initialState,

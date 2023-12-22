@@ -22,7 +22,7 @@ export class AppComponent {
   ) {
     this.authService.initialize().then((valid) => {
       if (valid) {
-        this.store.dispatch(UserActions.loadUser());
+        this.store.dispatch(UserActions.loadUserProfile());
       }
     });
   }

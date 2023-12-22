@@ -1,14 +1,19 @@
 export interface User {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
+  displayName?: string;
+  email: string;
+  externalId: string;
   imageUrl: string;
 }
 
-export interface UserInfo {
+export interface UserProfile {
   info: {
     sub: string;
     email: string;
-    name: string;
+    given_name: string;
+    family_name: string;
     picture: string;
   };
 }

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthConfig, OAuthErrorEvent, OAuthService } from 'angular-oauth2-oidc';
 
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -17,10 +16,7 @@ export class AuthService {
     useSilentRefresh: true,
   };
 
-  constructor(
-    private oAuthService: OAuthService,
-    private router: Router,
-  ) {
+  constructor(private oAuthService: OAuthService) {
     // Useful for debugging:
     this.oAuthService.events.subscribe((event) => {
       if (event instanceof OAuthErrorEvent) {
@@ -51,5 +47,9 @@ export class AuthService {
 
   hasValidAccessToken() {
     return this.oAuthService.hasValidAccessToken();
+  }
+
+  getIdToken() {
+    return this.oAuthService.getIdToken();
   }
 }

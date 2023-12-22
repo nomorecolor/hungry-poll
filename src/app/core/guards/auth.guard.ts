@@ -1,9 +1,10 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { OAuthService } from 'angular-oauth2-oidc';
+
+import { AuthService } from '../authentication/auth.service';
 
 export const authGuard: CanActivateFn = () => {
-  return inject(OAuthService).hasValidAccessToken()
+  return inject(AuthService).hasValidAccessToken()
     ? true
     : inject(Router).createUrlTree(['/']);
 };
